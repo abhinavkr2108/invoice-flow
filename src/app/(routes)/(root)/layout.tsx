@@ -9,11 +9,16 @@ export default function DashboardLayout({
 }) {
   return (
     <SidebarProvider>
-      <AppSidebar />
-      <main>
-        <SidebarTrigger />
-        <div className="p-6">{children}</div>
-      </main>
+      <div className="flex h-screen w-full">
+        {/* Sidebar */}
+        <AppSidebar />
+
+        {/* Main Content */}
+        <main className="flex-grow flex flex-col">
+          <SidebarTrigger />
+          <div className="p-6 flex-1">{children}</div>
+        </main>
+      </div>
     </SidebarProvider>
   );
 }
