@@ -57,6 +57,10 @@ export async function createInvoice(precState: any, formData: FormData) {
     /{{totalAmount}}/g,
     submission.value.total.toString()
   );
+  template = template.replace(
+    /{{invoiceLink}}/g,
+    `http://localhost:3000/api/invoice/${data.id}`
+  );
 
   try {
     await transporter.sendMail({

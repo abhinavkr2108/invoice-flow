@@ -14,9 +14,13 @@ import {
   PencilIcon,
   Trash2Icon,
 } from "lucide-react";
+import Link from "next/link";
 import React from "react";
 
-export default function InvoiceAction() {
+interface InvoiceActionProps {
+  invoiceId: string;
+}
+export default function InvoiceAction({ invoiceId }: InvoiceActionProps) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -29,9 +33,11 @@ export default function InvoiceAction() {
           <MailIcon />
           Send Reminder Email
         </DropdownMenuItem>
-        <DropdownMenuItem className="cursor-pointer">
-          <PencilIcon />
-          Edit Invoice
+        <DropdownMenuItem asChild>
+          <Link href={`/invoice/${invoiceId}`}>
+            <PencilIcon />
+            Edit Invoice
+          </Link>
         </DropdownMenuItem>
         <DropdownMenuItem className="cursor-pointer">
           <DownloadCloudIcon />
