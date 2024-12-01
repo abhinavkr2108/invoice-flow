@@ -33,7 +33,7 @@ export async function POST(
       return NextResponse.json({ error: "Invoice not found" }, { status: 404 });
     }
 
-    const templatePath = path.join(process.cwd(), "template.html");
+    const templatePath = path.join(process.cwd(), "public", "template.html");
     let template = fs.readFileSync(templatePath, "utf-8");
 
     // Replace placeholders with actual values
