@@ -6,6 +6,8 @@ import { invoiceSchema } from "./zodSchema";
 import prisma from "./db";
 import { redirect } from "next/navigation";
 import fs from "fs";
+import temp from "../../template.html";
+import edit from "../../edit-invoice.html";
 import { transporter } from "./nodemailer";
 import path from "path";
 
@@ -13,8 +15,10 @@ export async function createInvoice(precState: any, formData: FormData) {
   const session = await requireUser();
   const submission = parseWithZod(formData, { schema: invoiceSchema });
 
-  const templatePath = "../../template.html";
-  let template = fs.readFileSync(templatePath, "utf-8");
+  // const templatePath = temp;
+  // let template = fs.readFileSync(templatePath, "utf-8");
+
+  let template = temp;
 
   if (submission.status !== "success") {
     return submission.reply();
@@ -117,8 +121,7 @@ export async function editInvoice(prevState: any, formData: FormData) {
       invoiceItemRate: submission.value.invoiceItemRate,
     },
   });
-  const templatePath = "../../edit-invoice.html";
-  let template = fs.readFileSync(templatePath, "utf-8");
+  let template = edit;
 
   // Replace placeholders with actual values
   template = template.replace(/{{clientName}}/g, submission.value.clientName);

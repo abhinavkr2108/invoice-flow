@@ -4,6 +4,7 @@ import { NextResponse } from "next/server";
 import path from "path";
 import fs from "fs";
 import { transporter } from "@/utils/nodemailer";
+import temp from "../../../../../template.html";
 
 export async function POST(
   request: Request,
@@ -33,8 +34,7 @@ export async function POST(
       return NextResponse.json({ error: "Invoice not found" }, { status: 404 });
     }
 
-    const templatePath = "../../template.html";
-    let template = fs.readFileSync(templatePath, "utf-8");
+    let template = temp;
 
     // Replace placeholders with actual values
     template = template.replace(/{{clientName}}/g, invoiceData.clientName);
