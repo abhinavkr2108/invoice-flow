@@ -20,6 +20,12 @@ export async function createInvoice(precState: any, formData: FormData) {
   if (submission.status !== "success") {
     return submission.reply();
   }
+
+  const baseUrl =
+    process.env.NODE_ENV === "production"
+      ? "https://invoice-flow-eta.vercel.app"
+      : "http://localhost:3000";
+
   const data = await prisma.invoice.create({
     data: {
       invoiceName: submission.value.invoiceName,
@@ -59,7 +65,7 @@ export async function createInvoice(precState: any, formData: FormData) {
   );
   template = template.replace(
     /{{invoiceLink}}/g,
-    `http://localhost:3000/api/invoice/${data.id}`
+    `${baseUrl}/api/invoice/${data.id}`
   );
 
   try {
@@ -79,6 +85,10 @@ export async function createInvoice(precState: any, formData: FormData) {
 export async function editInvoice(prevState: any, formData: FormData) {
   const session = await requireUser();
   const submission = parseWithZod(formData, { schema: invoiceSchema });
+  const baseUrl =
+    process.env.NODE_ENV === "production"
+      ? "https://invoice-flow-eta.vercel.app"
+      : "http://localhost:3000";
 
   if (submission.status !== "success") {
     return submission.reply();
@@ -127,7 +137,7 @@ export async function editInvoice(prevState: any, formData: FormData) {
   );
   template = template.replace(
     /{{invoiceLink}}/g,
-    `http://localhost:3000/api/invoice/${data.id}`
+    `${baseUrl}/api/invoice/${data.id}`
   );
 
   try {

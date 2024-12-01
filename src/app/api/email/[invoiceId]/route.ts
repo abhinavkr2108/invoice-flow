@@ -16,7 +16,10 @@ export async function POST(
 ) {
   const session = await requireUser();
   const { invoiceId } = await params;
-  console.log("invoiceID", invoiceId);
+  const baseUrl =
+    process.env.NODE_ENV === "production"
+      ? "https://invoice-flow-eta.vercel.app"
+      : "http://localhost:3000";
 
   try {
     const invoiceData = await prisma.invoice.findUnique({
@@ -46,7 +49,7 @@ export async function POST(
     );
     template = template.replace(
       /{{invoiceLink}}/g,
-      `http://localhost:3000/api/invoice/${invoiceData.id}`
+      `${baseUrl}/api/invoice/${invoiceData.id}`
     );
 
     await transporter.sendMail({
