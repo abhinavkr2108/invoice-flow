@@ -14,7 +14,7 @@ export async function createInvoice(precState: any, formData: FormData) {
   const session = await requireUser();
   const submission = parseWithZod(formData, { schema: invoiceSchema });
 
-  const templatePath = path.join(process.cwd(), "public", "template.html");
+  const templatePath = "/template.html";
   let template = fs.readFileSync(templatePath, "utf-8");
 
   if (submission.status !== "success") {
@@ -118,7 +118,7 @@ export async function editInvoice(prevState: any, formData: FormData) {
       invoiceItemRate: submission.value.invoiceItemRate,
     },
   });
-  const templatePath = path.join(process.cwd(), "public", "edit-invoice.html");
+  const templatePath = "/edit-invoice.html";
   let template = fs.readFileSync(templatePath, "utf-8");
 
   // Replace placeholders with actual values
