@@ -2,6 +2,7 @@ import React from "react";
 import { requireUser } from "@/hooks/require-user";
 import DashBoardBlocks from "./components/dashboard-blocks";
 import DashboardGraph from "./components/dashboard-graph";
+import RecentInvoices from "./components/recent-invoices";
 
 export default async function DashboardPage() {
   const session = await requireUser();
@@ -12,7 +13,9 @@ export default async function DashboardPage() {
         <div className="lg:col-span-2">
           <DashboardGraph />
         </div>
-        <div className="lg:col-span-1 bg-gray-300">Hello 2</div>
+        <div className="">
+          <RecentInvoices />
+        </div>
       </div>
     </React.Fragment>
   );

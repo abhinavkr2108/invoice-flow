@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { requireUser } from "@/hooks/require-user";
 import prisma from "@/utils/db";
-import { CreditCard, DollarSign, Users } from "lucide-react";
+import { BookOpen, CreditCard, DollarSign, Users } from "lucide-react";
 import React from "react";
 
 async function getData(userId: string) {
@@ -46,7 +46,7 @@ export default async function DashBoardBlocks() {
       <Card>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
           <CardTitle>Total Revenue</CardTitle>
-          <DollarSign className="h-6 w-6 text-muted-foreground" />
+          <DollarSign className="h-6 w-6 text-primary" />
         </CardHeader>
         <CardContent>
           <div className="text-xl font-bold">
@@ -58,7 +58,7 @@ export default async function DashBoardBlocks() {
       <Card>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
           <CardTitle>Total Invoices Issued</CardTitle>
-          <Users className="h-6 w-6 text-muted-foreground" />
+          <Users className="h-6 w-6 text-primary" />
         </CardHeader>
         <CardContent>
           <div className="text-xl font-bold">+{total.length}</div>
@@ -70,7 +70,7 @@ export default async function DashBoardBlocks() {
       <Card>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
           <CardTitle>Paid Invoices</CardTitle>
-          <CreditCard className="h-6 w-6 text-muted-foreground" />
+          <CreditCard className="h-6 w-6 text-primary" />
         </CardHeader>
         <CardContent>
           <div className="text-xl font-bold">+{paidInvoices.length}</div>
@@ -82,7 +82,7 @@ export default async function DashBoardBlocks() {
       <Card>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
           <CardTitle>Open Invoices</CardTitle>
-          <DollarSign className="h-6 w-6 text-muted-foreground" />
+          <BookOpen className="h-6 w-6 text-primary" />
         </CardHeader>
         <CardContent>
           <div className="text-xl font-bold">+{pendingInvoices.length}</div>
