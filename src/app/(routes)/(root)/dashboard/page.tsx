@@ -1,11 +1,19 @@
-import UserAvatar from "@/components/shared/user-avatar";
 import React from "react";
-import { auth } from "../../../../../auth";
-import { redirect } from "next/navigation";
 import { requireUser } from "@/hooks/require-user";
-import AppSidebar from "@/components/shared/app-sidebar";
+import DashBoardBlocks from "./components/dashboard-blocks";
+import DashboardGraph from "./components/dashboard-graph";
 
 export default async function DashboardPage() {
   const session = await requireUser();
-  return <div>{/* <AppSidebar /> */} Hello</div>;
+  return (
+    <React.Fragment>
+      <DashBoardBlocks />
+      <div className="grid lg:grid-cols-3 gap-4 mt-5">
+        <div className="lg:col-span-2">
+          <DashboardGraph />
+        </div>
+        <div className="lg:col-span-1 bg-gray-300">Hello 2</div>
+      </div>
+    </React.Fragment>
+  );
 }

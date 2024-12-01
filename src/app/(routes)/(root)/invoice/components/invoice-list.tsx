@@ -73,7 +73,7 @@ export default async function InvoiceList() {
               )}
             </TableCell>
             <TableCell className="text-right">
-              <InvoiceAction invoiceId={invoice.id} />
+              <InvoiceAction status={invoice.status} invoiceId={invoice.id} />
             </TableCell>
           </TableRow>
         ))}
