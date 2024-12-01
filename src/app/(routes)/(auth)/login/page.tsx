@@ -6,11 +6,10 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
+
 import { Label } from "@/components/ui/label";
 import { auth, signIn } from "../../../../../auth";
 import { FcGoogle } from "react-icons/fc";
-import { requireUser } from "@/hooks/require-user";
 import { redirect } from "next/navigation";
 
 export default async function LoginPage() {

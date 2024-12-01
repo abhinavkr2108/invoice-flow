@@ -1,11 +1,12 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { requireUser } from "@/hooks/require-user";
 import DashBoardBlocks from "./components/dashboard-blocks";
 import DashboardGraph from "./components/dashboard-graph";
 import RecentInvoices from "./components/recent-invoices";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default async function DashboardPage() {
-  const session = await requireUser();
+  await requireUser();
   return (
     <React.Fragment>
       <DashBoardBlocks />
@@ -13,9 +14,9 @@ export default async function DashboardPage() {
         <div className="lg:col-span-2">
           <DashboardGraph />
         </div>
-        <div className="">
+        <Suspense fallback={<Skeleton className="h-full w-full" />}>
           <RecentInvoices />
-        </div>
+        </Suspense>
       </div>
     </React.Fragment>
   );

@@ -22,7 +22,7 @@ async function getInvoices(userId: string) {
     orderBy: {
       createdAt: "desc",
     },
-    take: 7,
+    take: 10,
   });
   return invoiceData;
 }
